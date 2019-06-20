@@ -1,0 +1,31 @@
+ul li {
+    list-style: none;
+}
+
+section {
+    width: 400px;
+    height: 400px;
+    margin: auto;
+}
+
+header {
+    border: 1px solid;
+}
+
+ul {
+    border: 1px solid;
+    border-top: 0px;
+    border-bottom: 0px;
+    padding: 0;
+    margin: 0;
+}
+
+
+.item {
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid;
+    height: 50px;
+}
