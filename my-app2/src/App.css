@@ -36,3 +36,33 @@
     transform: rotate(360deg);
   }
 }
+
+.selectedPanel {
+  border:1px solid;
+}
+.hide {
+  display: none;
+}
+.show {
+  display:block;
+}
+.wizardContainer {
+  padding: 10px;
+  display: flex;
+}
+.leftContainer {
+  display: flex;
+  flex-direction: column;
+}
+.rightContainer {
+
+}
+
+.panelHeader {
+  height: 70px;
+  border: 1px solid;
+}
+
+.highlight {
+  background-color: plum;
+}

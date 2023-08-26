@@ -1,6 +1,8 @@
 import logo from './logo.svg';
 import './App.css';
 import ChatComponent from './ChatComponent';
+import { Accordion } from './Components/Accordion';
+import { Wizard } from './Components/Wizard';
 
 function App() {
   return (
@@ -19,7 +21,9 @@ function App() {
           Learn React
         </a>
       </header> */}
-      <ChatComponent/>
+      {/* <ChatComponent/>
+      <Accordion/> */}
+      <Wizard/>
     </div>
   );
 }

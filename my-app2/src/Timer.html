@@ -1,0 +1,26 @@
+<html>
+  <head>
+    <link href="timer.css" rel="stylesheet"/>
+  </head>
+  <body>
+    <div id="results" class="hide">
+      <span id="hrs"></span>:<span id="mins"></span>:<span id="secs"></span>
+    </div>
+    <div id="timerContainer">
+      <select id="hourDropDwn">
+        <option value="0">0</option>
+      </select>
+      <select id="minDropDown">
+        <option value="0">0</option>
+      </select>
+      <select id="secDropDwn">
+        <option value="0">0</option>
+      </select>
+      <button id="startBtn">Start</button>
+      <button id="cancelBtn">Cancel</button>
+      <button id="pauseBtn" class="hide">Pause</button>
+      <button id="resumeBtn" class="hide">Resume</button>
+    </div>
+    <script src="Timer.js"></script>
+  </body>
+</html>
