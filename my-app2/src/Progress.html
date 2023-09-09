@@ -1,0 +1,42 @@
+<html>
+  <head>
+    <link
+      rel="stylesheet"
+      type="text/css"
+      rel="noopener"
+      target="_blank"
+      href="progress.css"
+    />
+  </head>
+  <body>
+    <div id="progressDiv"></div>
+    <button id="addBtn">Add Progress bar animate</button>
+    <script type="text/javascript">
+
+      function animateProgressBar() {
+    
+        const progressDiv = document.querySelector("#progressDiv");
+        const divEl = document.createElement("div");
+        divEl.style = `transition: 5s ease`;
+        divEl.classList.add("progress");
+
+        progressDiv.append(divEl);
+        setTimeout(() => {
+          divEl.classList.add("fullWidth");
+        }, 50);
+        // divEl.addEventListener("transitionend", function () {
+        //   count--;
+        //   if (count >= 1) {
+        //     animateProgressBar();
+        //   }
+        // });
+
+        //divEl.removeEventListener("transitionend", () => {});
+      }
+      window.onload = function () {
+        const addBtn = document.querySelector("#addBtn");
+        addBtn.addEventListener("click", animateProgressBar);
+      };
+    </script>
+  </body>
+</html>

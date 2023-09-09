@@ -13,15 +13,102 @@
     <!-- <div id="bookContainer">sdfdsfd</div>
     <script src="Book.js" />
     <script src="Inheritance.js"/> -->
+    <!-- <script src="MergePromise.js"/> -->
     <p id="element">this is me</p>
     <ul id="list">
-      <li>
-        hello
-      </li>
-      <li>
-        how r u
-      </li>
+      <li>hello</li>
+      <li>how r u</li>
     </ul>
-    <script src="Converter.js" />
+
+    <button id="addBtn">Add / Show throttling behavior</button>
+    <!-- <script src="Converter.js" /> -->
+    <script type="text/javascript">
+      function throttle(callback, timer, noOFTasks) {
+        const arr = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+        let timerId;
+        let isCalled = false;
+        return function () {
+          if (!isCalled) {
+            const newTasks = noOFTasks.splice(0, 2);
+            callback.call(null, newTasks);
+            isCalled = true;
+          } else {
+            clearTimeout(timerId);
+            timerId = setTimeout(() => {
+              callback();
+            }, timer);
+          }
+        };
+      }
+      const domObj = {
+        type: "div",
+        props: { id: "hello" },
+        children: [
+          {
+            type: "div",
+            children: [
+              { type: "h1", children: "body1" },
+              { type: "h2", children: "body1-test" },
+            ],
+          },
+        ],
+      };
+
+      let body = document.querySelector("body");
+      function constructDom(obj = domObj) {
+        let chidElem = document.createElement(obj.type);
+
+        if (typeof obj.children === "string") {
+          chidElem.innerText = obj.children;
+        } else {
+          let element = new DocumentFragment();
+        
+        
+          for (const child of obj.children) {
+            
+            element.appendChild(constructDom(child));
+
+          }
+          chidElem.appendChild(element);
+        }
+        return chidElem;
+      }
+
+      function throttleClickEvent() {}
+      Array.prototype.mapArray = mapArray
+      function mapArray (callbackFn) {
+        const arr = this;
+        const result = [];
+         for(const item of arr) {
+            let res =  callbackFn(item)
+            if (res) {
+              result.push(item)
+            }
+         }
+         console.log(result, "res")
+      }
+     
+      Array.prototype.filterArray = filterArray
+      function filterArray(callbackFn) {
+        const arr = this;
+        const result = [];
+         for(const item of arr) {
+            let res =  callbackFn(item)
+            if (res) {
+              result.push(item)
+            }
+         }
+         console.log(result, "res")
+      }
+     
+      
+      window.onload = () => {
+          var arr = [2,3,4,6,8,10,5,15,12];
+          var callback = (val) => val%3 === 0 
+          var callback2 = (val) => val
+          arr.mapArray(callback2)
+          arr.mapArray(callback)
+      };
+    </script>
   </body>
 </html>

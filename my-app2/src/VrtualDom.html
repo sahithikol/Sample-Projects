@@ -1,0 +1,68 @@
+<html>
+  <head> </head>
+  <body>
+    <script type="text/javascript">
+      const domObj1 = {
+        type: "div",
+        props: { id: "hello" },
+        children: [
+          {
+            type: "div",
+            children: [
+              { type: "h1", children: "body1" },
+              { type: "h2", children: "body1-test" },
+            ],
+          },
+        ],
+      };
+
+      const domObj = {
+        type: "div",
+        props: { id: "hello" },
+        children: [
+          {
+            type: "h1",
+            children: "hello",
+          },
+        ],
+      };
+      const domObj2 = {
+        type: "div",
+        props: { id: "hello" },
+        children: "test me",
+      };
+
+      let fragment = new DocumentFragment();
+      function buildVirtualDom(domObj) {
+        let parentElement = document.createElement(domObj.type);
+        if (domObj.props) {
+          const propKeys = Object.keys(domObj.props);
+          for (const key of propKeys) {
+            parentElement[key] = domObj.props[key];
+          }
+        }
+        const children = domObj.children;
+        if (typeof children === "string") {
+          parentElement.innerText = children;
+        } else {
+          for (const child of children) {
+            if (typeof child === "string") {
+              parentElement.append(child);
+            } else {
+              parentElement.append(buildVirtualDom(child));
+            }
+          }
+        }
+        return parentElement;
+      }
+      window.onload = () => {
+        const body = document.querySelector('body');
+        let fragment = new DocumentFragment();
+        fragment.append(buildVirtualDom(domObj));
+        fragment.append(buildVirtualDom(domObj1));
+        fragment.append(buildVirtualDom(domObj2));
+        body.append(fragment)
+      }
+    </script>
+  </body>
+</html>

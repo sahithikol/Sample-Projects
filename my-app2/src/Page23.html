@@ -1,0 +1,105 @@
+<html>
+  <head>
+    DFDSFDS
+  </head>
+  <body>
+    <script type="text/javascript">
+      function cancellableTimeOut(callback, timer) {
+        let fn;
+        let timerID;
+        timerID = setTimeout(() => {
+          callback();
+        }, timer);
+        return function () {
+          clearTimeout(timerID);
+        };
+      }
+
+      function PromiseRace(promiseArr) {
+        let result;
+        if (!promiseArr.length) {
+          return;
+        }
+
+        return new Promise((resolve, reject) => {
+          for (const item of promiseArr) {
+            if (!item instanceof Promise) {
+              item = new Promise((resolve) => resolve(item));
+            }
+            item
+              .then((val) => {
+                resolve(val);
+              })
+              .catch((ex) => {
+                reject(ex);
+              });
+          }
+        });
+      }
+
+      function PromiseAll(promiseArr) {
+        let resultArr = [];
+        let count =0;
+
+        if (!promiseArr.length) {
+          return;
+        }
+
+        return new Promise((resolve, reject) => {
+          for (const item of promiseArr) {
+            if (!item instanceof Promise) {
+              resultArr.push(Promise.resolve(item))
+            }
+            item
+              .then((val) => {
+                if (count === promiseArr.length) {
+                    resolve(resultArr)
+                }
+                resultArr.push(val);
+                count++;
+              })
+              .catch((ex) => {
+                if (count === promiseArr.length-1) {
+                    reject(resultArr)
+                }
+                resultArr.push(ex);
+                count++;
+              });
+          }
+          
+        });
+      }
+      window.onload = function () {
+        cancellableTimeOut(() => console.log("hello"), 200);
+        const promise1 = new Promise((resolve, reject) => {
+          setTimeout(resolve, 500, "one");
+        });
+
+        const promise2 = new Promise((resolve, reject) => {
+          setTimeout(resolve, 100, "two");
+        });
+
+        Promise.race([promise1, promise2]).then((value) => {
+          console.log(value, "TEST");
+          // Both resolve, but promise2 is faster
+        });
+        PromiseRace([promise1, promise2]).then((value) => {
+          console.log(value, "TEST");
+          // Both resolve, but promise2 is faster
+        });
+
+        Promise.all([promise1, promise2]).then((value) => {
+          console.log(value, "All Res");
+          // Both resolve, but promise2 is faster
+        });
+
+        PromiseAll([promise1, promise2]).then((value) => {
+          console.log(value, "All Ressdfdsfds");
+          // Both resolve, but promise2 is faster
+        });
+
+        console.log(PromiseAll([promise1, promise2]))
+      };
+    </script>
+  </body>
+</html>

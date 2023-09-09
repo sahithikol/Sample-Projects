@@ -1,0 +1,16 @@
+.progress {
+    height: 20px;
+    background-color: red;
+    margin: 20px;
+    width: 100%;
+}
+
+.animate {
+    transition: 5s ease;
+}
+
+
+.fullWidth {
+    width: 100%;
+}
+

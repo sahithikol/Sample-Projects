@@ -30,3 +30,9 @@ code {
 .highlight {
   background-color: green;
 }
+
+.prodItem {
+  display:flex;
+  justify-content: space-between;
+  width: 200px;
+}

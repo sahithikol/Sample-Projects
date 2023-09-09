@@ -1,4 +1,4 @@
-import React, { useReducer } from "react";
+import React, { useState, useReducer } from "react";
 
 const BusinessForm = ({ dispatch, state }) => {
   return (
@@ -220,7 +220,9 @@ export const Wizard = () => {
         {state.selectedPanel === panels.length ? (
           <button
             onClick={async () => {
-              const data = await mockApi(state.formState).catch(ex=> alert(ex));
+              const data = await mockApi(state.formState).catch((ex) =>
+                alert(ex)
+              );
               console.log(" success", data);
             }}
           >

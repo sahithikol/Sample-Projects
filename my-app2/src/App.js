@@ -3,8 +3,19 @@ import './App.css';
 import ChatComponent from './ChatComponent';
 import { Accordion } from './Components/Accordion';
 import { Wizard } from './Components/Wizard';
+import { TodoWrapper } from './Components/TodoWrapper';
+import Tictactoe from './Components/Tictactoe';
+import Comp3 from './Components/Comp3';
+import CoundDownTimer from './Components/CountDownTimer';
+import { useToggle } from './Hooks/useToggle';
+import CategoryFilter from './Components/CategoryFilter';
+import TwoStepLogin from './Components/TwoStepLogin';
+import ProgressBar from './Components/ProgressBar';
+import ProgressBarWrapper from './Components/ProgressBar';
 
 function App() {
+  const [toggle, value] = useToggle([1,4,6,313,0], 2)
+
   return (
     <div className="App">
       {/* <header className="App-header">
@@ -22,8 +33,19 @@ function App() {
         </a>
       </header> */}
       {/* <ChatComponent/>
-      <Accordion/> */}
-      <Wizard/>
+      // <Accordion/> */}
+      {/* // <Wizard/>
+      // <TodoWrapper/> */}
+      {/* <Tictactoe/> */}
+      {/* <Comp3/> */}
+      {/* <CoundDownTimer/>
+      {value}
+      <button onClick={() => {
+        toggle();
+      }}>Update me</button> */}
+       <CategoryFilter/>
+      <TwoStepLogin/>
+      <ProgressBarWrapper/>
     </div>
   );
 }
